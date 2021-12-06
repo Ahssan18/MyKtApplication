@@ -1,9 +1,6 @@
 package com.zebra.myktapplication.room.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.zebra.myktapplication.room.models.Alarm
 
 @Dao
@@ -12,7 +9,10 @@ interface AlarmDaos {
     fun add(alarm: Alarm)
 
     @Delete
-    fun delete(alarm: Alarm)
+    fun deleteAlarm(alarm: Alarm)
+
+    @Update
+    fun update(alarm: Alarm)
 
     @Query("SELECT * from alarm")
     fun getAllAlarm(): List<Alarm>
