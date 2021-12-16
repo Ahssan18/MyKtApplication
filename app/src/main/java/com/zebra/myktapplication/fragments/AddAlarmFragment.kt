@@ -28,13 +28,16 @@ class AddAlarmFragment : Fragment() {
     lateinit var dao: AlarmDaos
     lateinit var model: Alarm
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAddAlarmBinding.inflate(inflater)
         dao = RoomDb.getInstance(requireActivity())!!.getAlarmDao()
-        navController = Navigation.findNavController(requireActivity(), com.zebra.myktapplication.R.id.nav_host_fragment_container)
+        navController = Navigation.findNavController(
+            requireActivity(),
+            com.zebra.myktapplication.R.id.nav_host_fragment_container
+        )
         clickListener()
 
         return binding.root

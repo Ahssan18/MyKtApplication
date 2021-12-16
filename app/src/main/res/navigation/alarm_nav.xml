@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_alarmFragment_to_addAlarmFragment"
             app:destination="@id/addAlarmFragment" />
+        <action
+            android:id="@+id/action_alarmFragment_to_postFragment"
+            app:destination="@id/postFragment" />
     </fragment>
     <fragment
         android:id="@+id/addAlarmFragment"
@@ -34,4 +37,9 @@
             android:id="@+id/action_itemListDialogFragment_to_addAlarmFragment"
             app:destination="@id/addAlarmFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.zebra.myktapplication.fragments.PostFragment"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_post" />
 </navigation>

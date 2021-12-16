@@ -33,6 +33,7 @@
                 app:drawableTopCompat="@drawable/ic_add" />
 
             <TextView
+                android:id="@+id/tv_setting"
                 style="@style/style"
                 android:text="setting"
                 app:drawableTopCompat="@drawable/ic_settings" />

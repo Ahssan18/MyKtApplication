@@ -12,18 +12,20 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zebra.myktapplication.R
 import com.zebra.myktapplication.adapter.AdapterAlarm
+import com.zebra.myktapplication.adapter.AdpaterTwo
 import com.zebra.myktapplication.databinding.FragmentAddAlarmBinding
 import com.zebra.myktapplication.databinding.FragmentAlarmBinding
 import com.zebra.myktapplication.room.RoomDb
 import com.zebra.myktapplication.room.models.Alarm
 import com.zebra.myktapplication.utility.Utility
+import org.jetbrains.annotations.Contract
 
 class AlarmFragment : Fragment() {
     lateinit var binding: FragmentAlarmBinding
     lateinit var list: List<Alarm>
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAlarmBinding.inflate(layoutInflater)
         clickListener()
@@ -34,7 +36,9 @@ class AlarmFragment : Fragment() {
 
     private fun setAdapter() {
         list = RoomDb.getInstance(requireActivity()).getAlarmDao().getAllAlarm()
-        var adapter = AdapterAlarm(list)
+        val adapter: AdapterAlarm by lazy {
+            AdapterAlarm(list)
+        }
         var linearlayoutManager = LinearLayoutManager(requireActivity())
         binding.recycleAlarm.layoutManager = linearlayoutManager
         binding.recycleAlarm.setAdapter(adapter)
@@ -46,7 +50,11 @@ class AlarmFragment : Fragment() {
     private fun clickListener() {
         binding.tvAddAlarm.setOnClickListener {
             Utility.setState(true, it.context)
-            Navigation.findNavController(it).navigate(R.id.action_alarmFragment_to_addAlarmFragment);
+            Navigation.findNavController(it)
+                .navigate(R.id.action_alarmFragment_to_addAlarmFragment)
+        }
+        binding.tvSetting.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_alarmFragment_to_postFragment)
         }
     }
 
